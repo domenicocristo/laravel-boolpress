@@ -2,8 +2,34 @@
 @section('content')
 
     @auth
-        <h1>Ciao {{ Auth::user() -> name }}</h1>
+        <h1>Ciao {{ Auth::user() -> name }} sei nella Home</h1>
         <a class="btn btn-secondary" href="{{ route('logout') }}">LOGOUT</a>
+
+        <hr>
+
+        <h3>
+            <a href="{{ route('create') }}">CREATE NEW</a>
+        </h3>
+
+        <hr>
+
+        <h1>List Posts:</h1>
+        <ul>
+            @foreach ($posts as $post)
+                <li>
+                    <a href="{{ route('post', $post -> id) }}">
+                        <h2>
+                            {{ $post -> author }}
+                        </h2>
+                        <img src="{{ $post -> img }}" alt="img">
+                        <div>{{ $post -> title }}</div>
+                        <div>{{ $post -> date }}</div>
+                    </a>
+
+                    <a href="{{ route('delete', $post->id) }}">DELETE</a>
+                </li>
+            @endforeach
+        </ul>
     @else
         <h2>Esegui il login oppure registrati</h2>
 
