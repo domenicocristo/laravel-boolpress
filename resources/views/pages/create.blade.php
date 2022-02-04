@@ -21,7 +21,7 @@
         <input type="text" name="author" placeholder="author"><br>
 
         <label for="img">Image:</label>
-        <input type="text" name="img" value="https://picsum.photos/200/300"><br>
+        <input type="text" name="img" value="https://picsum.photos/400/300"><br>
 
         <label for="title">Title:</label>
         <input type="text" name="title" placeholder="title"><br>

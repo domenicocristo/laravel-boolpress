@@ -9,4 +9,18 @@
 
 body {
     text-align: center;
+    margin: 10px;
+}
+
+ul {
+    list-style-type: none;
+}
+
+li {
+    display: inline-block;
+    width: 500px;
+    background-color: #202124;
+    margin: 20px;
+    padding: 10px;
+    border-radius: 20px;
 }

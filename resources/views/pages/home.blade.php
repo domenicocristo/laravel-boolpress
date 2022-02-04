@@ -26,7 +26,7 @@
                         <div>{{ $post -> date }}</div>
                     </a>
 
-                    <a href="{{ route('delete', $post->id) }}">DELETE</a>
+                    <a class="fas fa-trash-alt" href="{{ route('delete', $post->id) }}"></a>
                 </li>
             @endforeach
         </ul>
