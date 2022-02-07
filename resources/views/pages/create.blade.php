@@ -28,6 +28,12 @@
 
         <label for="date">Date:</label>
         <input type="date" name="date"><br>
+
+        <select name="category_id">
+            @foreach ($categories as $category)
+                <option value="{{ $category->id }}">{{ $category->name }}</option>
+            @endforeach
+        </select>
         
         <input type="submit" value="CREATE"><br>
 

@@ -31,7 +31,7 @@
             @endforeach
         </ul>
     @else
-        <h2>Esegui il login oppure registrati</h2>
+        <h2>Esegui il login oppure registrati per vedere i post</h2>
 
         <br><hr><br>
     @endauth

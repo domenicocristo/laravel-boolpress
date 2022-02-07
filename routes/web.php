@@ -11,7 +11,9 @@ Route::get('/logout', 'Auth\LoginController@logout') -> name('logout');
 
 Route::get('/post/{id}', 'HomeController@post')-> name('post');
 
-Route::get('/create', 'HomeController@create')-> name('create');
-Route::post('/store', 'HomeController@store')-> name('store');
+Route::middleware('auth')->prefix('posts')->group(function() {
+Route::get('/create', 'PostController@create')-> name('create');
+Route::post('/store', 'PostController@store')-> name('store');
 
-Route::get('/delete/{id}', 'HomeController@delete')-> name('delete');
+Route::get('/delete/{id}', 'PostController@delete')-> name('delete');
+});
