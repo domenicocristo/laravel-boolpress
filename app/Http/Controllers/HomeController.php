@@ -19,28 +19,4 @@ class HomeController extends Controller
 
         return view('pages.post', compact('post'));
     }
-
-    public function create() {
-        return view('pages.create');
-    }
-
-    public function store(Request $request) {
-        $data = $request -> validate([
-            'author' => 'required|string|max:60',
-            'img' => 'required|string',
-            'title' => 'required|string|max:60',
-            'date' => 'required|date'
-        ]);
-
-        $post = Post::create($data);
-
-        return redirect() -> route('post', $post->id);
-    }
-
-    public function delete($id) {
-        $post = Post::findOrFail($id);
-        $post->delete();
-
-        return redirect()->route('home');
-    }
 }

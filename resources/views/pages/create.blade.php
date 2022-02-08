@@ -34,6 +34,8 @@
                 <option value="{{ $category->id }}">{{ $category->name }}</option>
             @endforeach
         </select>
+
+        <br>
         
         <input type="submit" value="CREATE"><br>
 

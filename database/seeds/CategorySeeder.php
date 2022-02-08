@@ -13,12 +13,6 @@ class CategorySeeder extends Seeder
      */
     public function run()
     {
-        factory(Post::class, 20) -> make() -> each(function($post) {
-
-            $category = Category::inRandomOrder() -> limit(1) -> first();
-            $post -> test() -> associate($category);
-
-            $post -> save();
-        });
+        factory(Category::class,20)->create();
     }
 }
