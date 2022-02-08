@@ -26,11 +26,6 @@ class CreatePostsTable extends Migration
             $table->unsignedBigInteger('category_id')->nullable();
             $table->foreign('category_id')->references('id')->on('categories');
         });
-
-        Schema::create('posts_tag', function (Blueprint $table) {
-            $table->unsignedBigInteger('tag_id')->nullable();
-            $table->foreign('tag_id')->references('id')->on('tags');
-        });
     }
 
     /**
@@ -41,12 +36,5 @@ class CreatePostsTable extends Migration
     public function down()
     {
         Schema::dropIfExists('posts');
-
-        Schema::dropIfExists('posts_tag');
-
-        // Schema::create('post_tag', function (Blueprint $table) {
-        //     $table->dropForeign('post_tag');
-        //     $table->dropForeign('tag_post');
-        // });
     }
 }
