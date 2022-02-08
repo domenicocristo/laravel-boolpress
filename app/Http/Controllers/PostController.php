@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Post;
 use App\Category;
+use App\Tag;
 
 class PostController extends Controller
 {
@@ -17,6 +18,9 @@ class PostController extends Controller
 
     public function create() {
         $categories = Category::all();
+
+        $tags = Tag::all();
+        
         return view('pages.create', compact('categories'));
     }
 
