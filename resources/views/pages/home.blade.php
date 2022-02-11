@@ -18,21 +18,25 @@
             @foreach ($posts as $post)
                 <li>
                     <a href="{{ route('post', $post -> id) }}">
-                        <h2>
-                            {{ $post -> author }}
-                        </h2>
+                        <h2>Author - {{ $post -> author }}</h2>
                         <img src="{{ $post -> img }}" alt="img">
-                        <div>{{ $post -> title }}</div>
-                        <div>{{ $post -> date }}</div>
+                        <div>Title - {{ $post -> title }}</div>
+                        <div>Category - {{ $post -> category -> name }}</div>
+                        <div>Tags: <br>
+                            @foreach ($post -> tags as $tag)
+                                {{ $tag -> name }} <br>
+                            @endforeach
+                        </div>
+                        <div>Date - {{ $post -> date }}</div>
                     </a>
 
+                    <a href="{{ route('edit', $post->id) }}">EDIT</a><br>
                     <a class="fas fa-trash-alt" href="{{ route('delete', $post->id) }}"></a>
                 </li>
             @endforeach
         </ul>
     @else
         <h2>Esegui il login oppure registrati per vedere i post</h2>
-
         <br><hr><br>
     @endauth
 

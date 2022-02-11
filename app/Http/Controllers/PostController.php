@@ -29,16 +29,60 @@ class PostController extends Controller
             'author' => 'required|string|max:60',
             'img' => 'required|string',
             'title' => 'required|string|max:60',
-            'date' => 'required|date'
+            'date' => 'required|date',
+            'category_id' => 'required|string'
         ]);
 
-        $post = Post::create($data);
+        $post = Post::make($data);
+        $category = Category::findOrFail($request -> get('category_id'));
+        $post -> category() -> associate($category);
+        $post -> save();
 
-        return redirect() -> route('post', $post->id);
+        $tags = Tag::findOrFail($request -> get('tags'));
+        $post -> tags() -> attach($tags);
+        $post -> save();
+
+        return redirect()->route('post', $post->id);
+    }
+
+    public function edit($id) {
+        $post = Post::findOrFail($id);
+
+        $categories = Category::all();
+
+        $tags = Tag::all();
+        
+        return view('pages.edit', compact('post', 'categories', 'tags'));
+    }
+
+    public function update(Request $request, $id) {
+        $data = $request -> validate([
+            'author' => 'required|string|max:60',
+            'img' => 'required|string',
+            'title' => 'required|string|max:60',
+            'date' => 'required|date',
+            'category_id' => 'required|string'
+        ]);
+
+        $post = Post::findOrFail($id);
+        $post->update($data);
+
+        $category = Category::findOrFail($request -> get('category_id'));
+        $post -> category() -> associate($category);
+        $post -> save();
+
+        $tags = Tag::findOrFail($request -> get('tags'));
+        $post -> tags() -> sync($tags);
+        $post -> save();
+
+        return redirect()->route('post', $post->id);
     }
 
     public function delete($id) {
         $post = Post::findOrFail($id);
+        $post -> tags() -> sync([]);
+        $post -> save();
+
         $post->delete();
 
         return redirect()->route('home');
